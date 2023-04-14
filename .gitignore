@@ -1,0 +1,10 @@
+node_modules
+pnpm-lock.yaml
+
+# Credentials
+.env
+nodes.json
+
+# Build Output
+build
+dist

@@ -1,0 +1,7 @@
+[{
+    "id": "main",
+    "host": "localhost",
+    "port": 2333,
+    "password": "",
+    "reconnectInterval": 5000
+}]
