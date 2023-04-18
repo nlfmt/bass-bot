@@ -1,7 +1,7 @@
-import { ApplicationCommandOptionType, CommandInteraction } from "discord.js";
-import { Command } from "../types/command";
+import { ApplicationCommandOptionType } from "discord.js";
+import { createCommand } from "@/util/register";
 
-const cmd: Command = {
+export default createCommand({
     name: 'help',
     description: 'List all of my commands or info about a specific command.',
     aliases: ['commands'],
@@ -12,9 +12,7 @@ const cmd: Command = {
             description: 'The command you want info on.',
         }
     ],
-    async run(i: CommandInteraction) {
+    async run(i) {
         i.channel?.send('Pong.');
     }
-}
-
-export default cmd;
+})

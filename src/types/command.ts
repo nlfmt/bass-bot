@@ -1,4 +1,5 @@
-import { ApplicationCommandOption, CommandInteraction } from "discord.js";
+import BassBot from "@/bassbot";
+import { ApplicationCommandOption, Client, CommandInteraction } from "discord.js";
 
 export type Command = {
     name: string;
@@ -6,5 +7,5 @@ export type Command = {
     aliases?: string[];
     usage?: string;
     options?: ApplicationCommandOption[];
-    run: (i: CommandInteraction) => Promise<void>;
+    run: (i: CommandInteraction, bot: BassBot) => Promise<void>;
 }
