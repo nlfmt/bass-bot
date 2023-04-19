@@ -1,5 +1,6 @@
+import logger from "@/util/logger";
 import { registerLCEvent } from "@/util/register";
 
 export default registerLCEvent("nodeError", async (client, node, error) => {
-    console.log(`Node ${node.id} encountered an error: ${error.message}`);
+    logger.error("lavalink", `Node ${node.id} encountered an error: ${error.message}`);
 });

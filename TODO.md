@@ -1,1 +1,2 @@
 - [ ]  Better error handling when commands/events are not found, or dont have a default export
+- [ ]  why is ll emitting a LOAD_FAILED all the time altough ll server is fine?

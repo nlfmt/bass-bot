@@ -1,3 +1,4 @@
+import logger from "@/util/logger";
 import { registerEvent } from "@/util/register";
 
 export default registerEvent("interactionCreate", async (bot, i) => {
@@ -9,7 +10,7 @@ export default registerEvent("interactionCreate", async (bot, i) => {
     try {
         await cmd.run(i, bot);
     } catch (err) {
-        console.error(err);
+        logger.error("interactionCreate", String(err));
         await i.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
 })

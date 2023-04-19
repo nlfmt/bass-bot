@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionType } from "discord.js";
+import { ApplicationCommandOptionType, ChatInputCommandInteraction } from "discord.js";
 import { createCommand } from "@/util/register";
 
 export default createCommand({
@@ -13,5 +13,19 @@ export default createCommand({
     ],
     async run(i, bot) {
 
+        if (!(i instanceof ChatInputCommandInteraction)) return;
+
+        const song = i.options.getString('song');
+        if (!song) return void i.reply({ content: 'Please provide a song!', ephemeral: true });
+
+        const player = bot.getPlayer(i.guild, i.channel!);
+        if (!player.connected) player.connect(i.member.voice.channelId!);
+
+        const res = await bot.lavalink.rest?.loadTracks("ytsearch:"+song);
+
+        if (res) {
+            player.play(res.tracks[0].track);
+            i.reply({ content: `Playing ${res.tracks[0].info.title}` });
+        }
     }
 })

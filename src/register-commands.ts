@@ -4,22 +4,23 @@ import { join } from "path";
 import { Command } from "./types/command";
 
 import dotenv from "dotenv";
+import logger from "./util/logger";
 
 (async () => {
     dotenv.config();
     const rest = new REST().setToken(process.env.TOKEN!);
 
     const commandFiles = await readdir(join(__dirname, "commands"));
-    console.log("Loading commands...");
+    logger.info("Loading commands...");
     const commands = new Array<{ name: string, description: string, options?: ApplicationCommandOption[] }>();
 
     for (const file of commandFiles) {
         const command: Command = require(`./commands/${file}`)?.default;
         if (!command || !command.name || !command.description) {
-            console.log(`❌ ${file} is not a valid command.`);
+            logger.warn(`❌ ${file} is not a valid command.`);
             continue;
         }
-        console.log(`✔ ${command.name}`);
+        logger.info(`✔ ${command.name}`);
         commands.push({
             name: command.name,
             description: command.description,

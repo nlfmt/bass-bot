@@ -12,7 +12,7 @@ export default createCommand({
             description: 'The command you want info on.',
         }
     ],
-    async run(i) {
+    async run(i, bot) {
         i.channel?.send('Pong.');
     }
 })
